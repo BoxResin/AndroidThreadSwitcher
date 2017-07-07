@@ -29,16 +29,19 @@ object ThreadSwitcher
                 = Chain {
                     var tempResult: Return? = null
                     val param = priorTask()
+                    var exception: Throwable? = null
                     uiHandler.post {
                         synchronized(this, {
-                            tempResult = task(param)
+                            try { tempResult = task(param) }
+                            catch(e: Throwable) { exception = e }
                             (this as Object).notify()
                         })
                     }
                     synchronized(this, {
-                        if (tempResult == null)
+                        if (tempResult == null && exception == null)
                             (this as Object).wait()
                     })
+                    if (exception != null) throw exception!!
                     tempResult!!
                 }
 
