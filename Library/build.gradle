@@ -1,5 +1,20 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: 'com.novoda.bintray-release'
+
+publish {
+    userOrg = 'boxresin'
+    groupId = 'boxresin.library'
+    artifactId = 'AndroidThreadSwitcher'
+    publishVersion = '1.0.0'
+    desc = 'A handy android library to make it easy to switch between UI and Worker thread'
+    website = 'https://github.com/BoxResin/AndroidThreadSwitcher'
+}
+
+// Prevent an error that gradle can't generate java-docs from '*.kt' files.
+tasks.withType(Javadoc).all {
+    enabled = false
+}
 
 android {
     compileSdkVersion 25
