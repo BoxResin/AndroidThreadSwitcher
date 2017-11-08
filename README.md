@@ -21,7 +21,7 @@ dependencies {
 ThreadSwitcher.newChain() // Create an empty chain.
         // Concat a UI chain to the empty chain.
         .onUI {
-            // Some tasks to do on UI Thread
+            // Some tasks to do on a UI Thread
             "result" // Pass any value to the next chain.
         }
         // Concat a Worker chain to the previous chain.
@@ -29,20 +29,20 @@ ThreadSwitcher.newChain() // Create an empty chain.
             // Some tasks to do on Worker Thread
         }
         .onUI {
-            // Some tasks to do on UI Thread
+            // Some tasks to do on a UI Thread
         }
         .onWorker {
-            // Some tasks to do on Worker Thread
+            // Some tasks to do on a Worker Thread
             "data"
         }
 
-        // Start to perform all chains from top to bottom.
+        // Start to perform all chains from the top to bottom.
         .start(
         // onSuccess callback would be invoked when all chains are finished without any exception.
         onSuccess = { result: String -> // The type of parameter is settled by the return value of last chain.
         },
 
-        // onError callback would be invoked when an exception occurred during the performance of chains.
+        // onError callback would be invoked when an exception occurred during performancing chains.
         onError = { e: Throwable -> // The exception
         })
 ```
