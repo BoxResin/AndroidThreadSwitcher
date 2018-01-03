@@ -12,7 +12,7 @@ Add the following to `app`'s `build.gradle` file:
 
 ```gradle
 dependencies { 
-    compile 'boxresin.library:AndroidThreadSwitcher:1.0.0'
+    compile 'boxresin.library:AndroidThreadSwitcher:1.1.0'
 }
 ```
 
