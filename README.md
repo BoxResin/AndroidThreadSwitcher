@@ -16,7 +16,7 @@ dependencies {
 }
 ```
 
-## Usage
+## Usage in Kotlin
 ```kotlin
 ThreadSwitcher.newChain() // Create an empty chain.
         // Concat a UI chain to the empty chain.
@@ -46,6 +46,46 @@ ThreadSwitcher.newChain() // Create an empty chain.
         onError = { e: Throwable -> // The exception
         })
 ```
+
+## Usage in Java 8+
+```java
+ThreadSwitcher.newChain() // Create an empty chain.
+        // Concat a UI chain to the empty chain.
+        .onUI(v -> // v is Void type.
+        {
+            // Some tasks to do on a UI Thread
+            return "result"; // Pass any value to the next chain.
+        })
+        // Concat a Worker chain to the previous chain.
+        .onWorker((String result) -> // Receive the value from the previous chain.
+        {
+            // Some tasks to do on Worker Thread
+            return Unit.INSTANCE; // Unit type of Kotlin
+        })
+        .onUI(unit -> // Unit type of Kotlin
+        {
+            // Some tasks to do on a UI Thread
+            return Unit.INSTANCE;
+        })
+        .onWorker(unit ->
+        {
+            // Some tasks to do on a Worker Thread
+            return "data";
+        })
+
+        // Start to perform all chains from the top to bottom.
+        .start(
+            // This function would be invoked when all chains are finished without any exception.
+            (String result) -> { // The type of parameter is settled by the return value of last chain.
+                return Unit.INSTANCE;
+            },
+            // This function would be invoked when an exception occurred during performancing chains.
+            (Throwable e) -> {
+                return Unit.INSTANCE;
+            }
+        );
+```
+
 
 ## License
 
