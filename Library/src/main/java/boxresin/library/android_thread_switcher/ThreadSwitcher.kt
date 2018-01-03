@@ -10,6 +10,7 @@ object ThreadSwitcher
     private val uiHandler: Handler by lazy { Handler(Looper.getMainLooper()) }
 
 
+    @JvmStatic
     fun newChain() = Chain { Unit }
 
     class Chain<out Param>(private val priorTask: () -> Param)
