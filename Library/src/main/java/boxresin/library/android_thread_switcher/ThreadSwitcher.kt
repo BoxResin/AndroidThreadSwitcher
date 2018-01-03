@@ -1,20 +1,14 @@
 package boxresin.library.android_thread_switcher
 
 import android.os.Handler
-import android.support.annotation.UiThread
+import android.os.Looper
 import kotlin.concurrent.thread
 
 /** A utility class to make it easy to switch between UI and Worker thread. */
 object ThreadSwitcher
 {
-    private lateinit var uiHandler: Handler
+    private val uiHandler: Handler by lazy { Handler(Looper.getMainLooper()) }
 
-    /** You must call it on the UI thread before using ThreadSwitcher. */
-    @UiThread
-    fun initialize()
-    {
-        uiHandler = Handler()
-    }
 
     fun newChain() = Chain { Unit }
 
