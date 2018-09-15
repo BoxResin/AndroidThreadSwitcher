@@ -1,8 +1,8 @@
 package boxresin.test.android_thread_switcher
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import boxresin.library.android_thread_switcher.ThreadSwitcher
 import kotlinx.android.synthetic.main.activity_main.*
 
