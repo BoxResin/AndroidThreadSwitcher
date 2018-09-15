@@ -6,12 +6,15 @@ buildscript {
 	repositories {
 		jcenter()
 		google()
+		maven { url 'https://dl.bintray.com/minyushov/gradle' }
 	}
 
 	dependencies {
 		classpath 'com.android.tools.build:gradle:3.3.0-alpha10'
-		classpath 'com.novoda:bintray-release:0.7.0'
 		classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+
+		// Bintray Uploader
+		classpath 'com.minyushov.gradle:bintray:1.1.0'
 
 		// NOTE: Do not place your application dependencies here; they belong
 		// in the individual module build.gradle files

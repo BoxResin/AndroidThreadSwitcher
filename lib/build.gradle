@@ -1,19 +1,28 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'com.novoda.bintray-release'
+apply plugin: 'com.minyushov.bintray'
 
-publish {
-	userOrg = 'boxresin'
+// Bintray upload setting
+bintrayUpload {
+	// package info
 	groupId = 'boxresin.library'
 	artifactId = 'AndroidThreadSwitcher'
-	publishVersion = '1.0.0'
-	desc = 'A handy android library to make it easy to switch between UI and Worker thread'
-	website = 'https://github.com/BoxResin/AndroidThreadSwitcher'
-}
+	version = '1.2.0'
 
-// Prevent an error that gradle can't generate java-docs from '*.kt' files.
-tasks.withType(Javadoc).all {
-	enabled = false
+	// Bintray info
+	repo = 'maven'
+	pkgName = 'AndroidThreadSwitcher'
+	vcsUrl = 'https://github.com/BoxResin/AndroidThreadSwitcher.git'
+	license = 'MIT'
+
+	// others
+	dryRun = false // prevent auto-delivery to Bintray
+	docs = true
+	sources = true
+
+	// 'user' and 'key' should be inputed from the shell
+	user = findProperty('user') ?: 'none'
+	key = findProperty('key') ?: 'none'
 }
 
 android {
