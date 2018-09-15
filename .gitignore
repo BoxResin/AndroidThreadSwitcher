@@ -1,9 +1,14 @@
+# Build files
+build/
+
+# Project setting files
+.idea/
 *.iml
-.gradle
-/local.properties
-/.idea/workspace.xml
-/.idea/libraries
+local.properties
+
+# Gradle generation files
+.gradle/
+
+# OS related files
 .DS_Store
-/build
-/captures
-.externalNativeBuild
+Thumbs.db

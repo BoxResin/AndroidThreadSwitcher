@@ -3,46 +3,48 @@ apply plugin: 'kotlin-android'
 apply plugin: 'com.novoda.bintray-release'
 
 publish {
-    userOrg = 'boxresin'
-    groupId = 'boxresin.library'
-    artifactId = 'AndroidThreadSwitcher'
-    publishVersion = '1.0.0'
-    desc = 'A handy android library to make it easy to switch between UI and Worker thread'
-    website = 'https://github.com/BoxResin/AndroidThreadSwitcher'
+	userOrg = 'boxresin'
+	groupId = 'boxresin.library'
+	artifactId = 'AndroidThreadSwitcher'
+	publishVersion = '1.0.0'
+	desc = 'A handy android library to make it easy to switch between UI and Worker thread'
+	website = 'https://github.com/BoxResin/AndroidThreadSwitcher'
 }
 
 // Prevent an error that gradle can't generate java-docs from '*.kt' files.
 tasks.withType(Javadoc).all {
-    enabled = false
+	enabled = false
 }
 
 android {
-    compileSdkVersion 27
-    buildToolsVersion "27.0.3"
+	compileSdkVersion 28
 
-    defaultConfig {
-        minSdkVersion 14
-        targetSdkVersion 27
+	defaultConfig {
+		minSdkVersion 14
+		targetSdkVersion 28
+		testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+	}
 
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
-    }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
+	buildTypes {
+		release {
+			minifyEnabled false
+			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+		}
+	}
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    testCompile 'junit:junit:4.12'
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-}
-repositories {
-    mavenCentral()
+	// Local JAR
+	implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+	// Kotlin
+	implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+	// Test
+	testImplementation 'junit:junit:4.12'
+
+	// Android Test
+	androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
+		exclude group: 'com.android.support', module: 'support-annotations'
+	})
 }
