@@ -1,3 +1,5 @@
+**NOTE:** This repository has been deprecated. Use [kotlin coroutine](https://github.com/Kotlin/kotlinx.coroutines)
+
 [![Download](https://api.bintray.com/packages/boxresin/maven/AndroidThreadSwitcher/images/download.svg) ](https://bintray.com/boxresin/maven/AndroidThreadSwitcher/_latestVersion)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/BoxResin/JavaHTTP/master/LICENSE)
 
